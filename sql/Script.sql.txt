@@ -1,0 +1,24 @@
+
+
+Criando Privilegios e Usuario no Banco :
+
+USER sistemayoutube
+
+PASSWORD Sistema_Youtube@#24
+
+CREATE USER 'sistemayoutube'@'localhost' IDENTIFIED VIA mysql_native_password USING '***';GRANT USAGE ON *.* TO 'sistemayoutube'@'localhost' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;GRANT ALL PRIVILEGES ON `sistemayoutube`.* TO 'sistemayoutube'@'localhost';
+
+REVOKE ALL PRIVILEGES ON `sistemayoutube`.* FROM 'sistemayoutube'@'localhost'; GRANT ALL PRIVILEGES ON `sistemayoutube`.* TO 'sistemayoutube'@'localhost' WITH GRANT OPTION;
+
+
+CREATE DATABASE sistemayoutube;
+
+CREATE TABLE `sistemayoutube`.`usuarios` ( `id` INT NOT NULL AUTO_INCREMENT , `nome` VARCHAR(100) NOT NULL , `login` VARCHAR(15) NOT NULL , `email` VARCHAR(100) NOT NULL , `senha` VARCHAR(50) NOT NULL , `datacadastro` DATETIME NOT NULL , `dataultimoacesso` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+ALTER TABLE `usuarios` CHANGE `dataultimoacesso` `dataultimoacesso` DATETIME NULL;
+
+
+INSERT INTO `usuarios`( `nome`, `login`, `email`, `senha`, `datacadastro`) VALUES ('Gabriel Matheus','admin','jaquelinesensacao@gmail.com','12345','2017-10-10 14:58:00')
+
+ALTER TABLE `usuarios` ADD `status` INT(1) NOT NULL AFTER `dataultimoacesso`;
