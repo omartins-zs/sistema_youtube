@@ -35,31 +35,35 @@
 		<div class="login-box-body">
 			<p class="login-box-msg">Entre para iniciar sua sessão</p>
 
-			<form action="../../index2.html" method="post">
-				<div class="form-group has-feedback">
-					<input type="email" id="password" class="form-control" placeholder="E-mail">
-					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-				</div>
-				<div class="form-group has-feedback">
-					<input type="password" id="password" class="form-control" placeholder="Senha">
-					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-				</div>
-				<div class="row">
-					<div class="col-xs-8">
-						<div class="checkbox icheck">
-							<label>
-								<input type="checkbox"> Permanecer conectado
-							</label>
-						</div>
+			<?php
+			echo form_open('Autentica');
+			echo validation_errors();
+			?>
+			<div class="form-group has-feedback">
+				<input type="email" id="login" class="form-control" placeholder="E-mail ou Usuário">
+				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+			</div>
+			<div class="form-group has-feedback">
+				<input type="password" id="password" class="form-control" placeholder="Senha">
+				<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+			</div>
+			<div class="row">
+				<div class="col-xs-8">
+					<div class="checkbox icheck">
+						<label>
+							<input type="checkbox"> Permanecer conectado
+						</label>
 					</div>
-					<!-- /.col -->
-					<div class="col-xs-4">
-						<button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
-					</div>
-					<!-- /.col -->
 				</div>
-			</form>
-
+				<!-- /.col -->
+				<div class="col-xs-4">
+					<button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
+				</div>
+				<!-- /.col -->
+			</div>
+			<?php
+			echo form_close();
+			?>
 			<!-- <div class="social-auth-links text-center">
 				<p>- OR -</p>
 				<a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
