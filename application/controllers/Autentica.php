@@ -28,4 +28,23 @@ class Autentica extends CI_Controller
 			redirect('home/dashboard', 'refresh');
 		}
 	}
+	
+	public function check_database($senha)
+	{
+		$login = $this->input->post('email');
+
+		$result = $this->Usuario_model->login($login, $senha);
+
+		$usuarioId = '';
+		$usuarioNome = '';
+
+		if ($result) {
+			foreach ($result as $linha) {
+				$dados['usuarioId'] = $linha->id;
+				$dados['usuarionome'] = $linha->nome;
+			}
+		} else {
+			$this->form_validation->set_message('check_database', 'Ops! Algo deu errado!');
+		}
+	}
 }
