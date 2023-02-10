@@ -17,21 +17,22 @@ class Autentica extends CI_Controller
 	public function index()
 	{
 		$this->load->library('form_validation');
-		$this->form_validation->set_message('required', 'Campo %s obrigatório');
 		// Explicação do Form validation -> Tipo do campo | Nome para substituir '%s' | Regra
-		$this->form_validation->set_rules('email', 'E-mail ou Usuário', 'trim|required');
+		$this->form_validation->set_message('required', 'Campo %s obrigatório');
+		$this->form_validation->set_rules('login', 'Usuário', 'trim|required');
+		$this->form_validation->set_message('required', 'Campo %s obrigatório');
 		$this->form_validation->set_rules('password', 'Senha', 'trim|required|callback_check_database');
 
 		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('Fpages/login');
+			redirect('login', 'refresh');
 		} else {
 			redirect('home/dashboard', 'refresh');
 		}
 	}
-	
+
 	public function check_database($senha)
 	{
-		$login = $this->input->post('email');
+		$login = $this->input->post('login');
 
 		$result = $this->Usuario_model->login($login, $senha);
 
@@ -39,12 +40,10 @@ class Autentica extends CI_Controller
 		$usuarioNome = '';
 
 		if ($result) {
-			foreach ($result as $linha) {
-				$dados['usuarioId'] = $linha->id;
-				$dados['usuarionome'] = $linha->nome;
-			}
+
+			return true;
 		} else {
-			$this->form_validation->set_message('check_database', 'Ops! Algo deu errado!');
+			return false;
 		}
 	}
 }
