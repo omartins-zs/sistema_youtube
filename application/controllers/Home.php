@@ -16,9 +16,16 @@ class Home extends CI_Controller
 	public function index()
 	{
 		redirect('login');
-		// $this->load->view('welcome_message');
-		// $this->load->view('welcome_message');
-		// $this->load->view('welcome_message');
-		// $this->load->view('welcome_message');
+	}
+	public function logout()
+	{
+		$this->session->unset_userdata('logged_in');
+		session_destroy();
+		redirect('home', 'refresh');
+	}
+
+	public function dashboard()
+	{
+		redirect('login');
 	}
 }

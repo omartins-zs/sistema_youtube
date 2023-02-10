@@ -17,33 +17,39 @@ class Autentica extends CI_Controller
 	public function index()
 	{
 		$this->load->library('form_validation');
+
 		// Explicação do Form validation -> Tipo do campo | Nome para substituir '%s' | Regra
 		$this->form_validation->set_message('required', 'Campo %s obrigatório');
 		$this->form_validation->set_rules('login', 'Usuário', 'trim|required');
-		$this->form_validation->set_message('required', 'Campo %s obrigatório');
-		$this->form_validation->set_rules('password', 'Senha', 'trim|required|callback_check_database');
+		$this->form_validation->set_rules('password', 'Senha', 'trim|required');
 
 		if ($this->form_validation->run() == FALSE) {
 			redirect('login', 'refresh');
 		} else {
-			redirect('home/dashboard', 'refresh');
-		}
-	}
 
-	public function check_database($senha)
-	{
-		$login = $this->input->post('login');
+			$login = $this->input->post('login');
+			$senha = $this->input->post('senha');
 
-		$result = $this->Usuario_model->login($login, $senha);
+			$this->load->model('Usuario_model');
+			$result = $this->Usuario_model->login($login, $senha);
 
-		$usuarioId = '';
-		$usuarioNome = '';
+			if ((isset($result)) && (!empty($result))) {
+				$resultadoUsuario = $this->Usuario_model->login($login, $senha);
 
-		if ($result) {
-
-			return true;
-		} else {
-			return false;
+				foreach ($resultadoUsuario as $usuario) {
+					$config_array = array(
+						'nomeUsuario' => $usuario->nome,
+						'loginUsuario' => $usuario->login,
+						'emailUsuario' => $usuario->email,
+						'dataCadastro' => $usuario->dataCdastro
+					);
+				}
+				
+				$this->session->set_userdata('logged_in', $config_array);
+				redirect('home/dashboard', 'refresh');
+			} else {
+				redirect('login', 'refresh');
+			}
 		}
 	}
 }
