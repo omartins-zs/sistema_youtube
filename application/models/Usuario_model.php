@@ -8,11 +8,11 @@ class Usuario_model extends CI_Model
 		parent::__construct();
 	}
 
-	public function login($email, $senha)
+	public function login($login, $senha)
 	{
-		$this->db->select('id', 'nome');
+		$this->db->select('id', 'nome', 'login', 'email');
 		$this->db->from('usuarios');
-		$this->db->where('email', $email);
+		$this->db->where('login', $login);
 		$this->db->where('senha', $senha);
 		$this->db->where('status', '1');
 		$this->db->limit(1);
