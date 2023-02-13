@@ -24,3 +24,16 @@ INSERT INTO `usuarios`( `nome`, `login`, `email`, `senha`, `datacadastro`) VALUE
 ALTER TABLE `usuarios` ADD `status` INT(1) NOT NULL AFTER `dataultimoacesso`;
 
 CREATE TABLE `sistemayoutube`.`perfil` ( `perfilid` INT NOT NULL AUTO_INCREMENT , `descricao` INT NOT NULL , `status` INT NOT NULL , PRIMARY KEY (`perfilid`)) ENGINE = InnoDB;
+
+ALTER TABLE `perfil` CHANGE `descricao` `descricao` VARCHAR(100) NOT NULL;
+
+
+INSERT INTO `perfil` (`perfilid`, `descricao`, `status`) VALUES
+(1, 'SUPER ADMINISTRADOR', 1),
+(2, 'ADMINISTRADOR (EMPRESA)', 1),
+(3, 'DIRETOR', 1),
+(4, 'GERENTE', 1),
+(5, 'SUPERVISOR', 1),
+(6, 'REPRESENTANTE (VENDEDOR)', 1),
+(7, 'CLIENTE', 1),
+(8, 'VISITANTE', 1);
