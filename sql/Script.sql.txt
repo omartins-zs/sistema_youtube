@@ -22,3 +22,5 @@ ALTER TABLE `usuarios` CHANGE `dataultimoacesso` `dataultimoacesso` DATETIME NUL
 INSERT INTO `usuarios`( `nome`, `login`, `email`, `senha`, `datacadastro`) VALUES ('Gabriel Matheus','admin','jaquelinesensacao@gmail.com','12345','2017-10-10 14:58:00')
 
 ALTER TABLE `usuarios` ADD `status` INT(1) NOT NULL AFTER `dataultimoacesso`;
+
+CREATE TABLE `sistemayoutube`.`perfil` ( `perfilid` INT NOT NULL AUTO_INCREMENT , `descricao` INT NOT NULL , `status` INT NOT NULL , PRIMARY KEY (`perfilid`)) ENGINE = InnoDB;
