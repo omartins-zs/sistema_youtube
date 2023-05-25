@@ -63,3 +63,27 @@
 		</div>
 	</section>
 </div>
+
+<script src="<?= base_url(); ?>assets/js/jquery/jquery-2.2.3.min.js"></script>
+
+<script src="<?= base_url(); ?>assets/js/bootstrap/bootstrap.min.js"></script>
+<script src="<?= base_url(); ?>assets/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url(); ?>assets/datatables/dataTables.bootstrap.min.js"></script>
+
+<!-- page script -->
+<script>
+	var base_url = '<?= base_url() ?>';
+	$(document).ready(function() {
+
+	});
+	$(function() {
+		$('#example1').DataTable({
+			"paging": true,
+			"lengthChange": false,
+			"searching": false,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false
+		});
+	});
+</script>
