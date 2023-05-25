@@ -8,12 +8,14 @@ $datacadastro = $session_youtube['datacadastro'];
 <header class="main-header">
 
 	<!-- Logo -->
-	<a href="index2.html" class="logo">
+	<a href="dashboard" class="logo">
 		<!-- mini logo for sidebar mini 50x50 pixels -->
-		<span class="logo-mini"><b>Sistema</b>Youtube</span>
+		<!--         <span class="logo-mini"><b>Sistema </b>YouTUBE</span> -->
+		<span class="logo-mini"><img src="<?= base_url(); ?>assets/img/logo_youtube.png" style="width: 48px; height: 48px"></span>
+
 
 		<!-- logo for regular state and mobile devices -->
-		<span class="logo-lg"><b>Sistema</b>Youtube</span>
+		<span class="logo-lg"><b>Sistema </b>YouTUBE</span>
 	</a>
 
 	<!-- Header Navbar: style can be found in header.less -->
@@ -40,7 +42,7 @@ $datacadastro = $session_youtube['datacadastro'];
 									<!-- start message -->
 									<a href="#">
 										<div class="pull-left">
-											<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+											<img src="<?= base_url(); ?>assets/img/01avatar.jpg" class="img-circle" alt="User Image">
 										</div>
 										<h4>
 											Support Team
@@ -53,7 +55,7 @@ $datacadastro = $session_youtube['datacadastro'];
 								<li>
 									<a href="#">
 										<div class="pull-left">
-											<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+											<img src="<?= base_url(); ?>assets/img/user3-128x128.jpg" class="img-circle" alt="User Image">
 										</div>
 										<h4>
 											AdminLTE Design Team
@@ -65,7 +67,7 @@ $datacadastro = $session_youtube['datacadastro'];
 								<li>
 									<a href="#">
 										<div class="pull-left">
-											<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+											<img src="<?= base_url(); ?>assets/img/user4-128x128.jpg" class="img-circle" alt="User Image">
 										</div>
 										<h4>
 											Developers
@@ -77,7 +79,7 @@ $datacadastro = $session_youtube['datacadastro'];
 								<li>
 									<a href="#">
 										<div class="pull-left">
-											<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+											<img src="<?= base_url(); ?>assets/img/user3-128x128.jpg" class="img-circle" alt="User Image">
 										</div>
 										<h4>
 											Sales Department
@@ -89,7 +91,7 @@ $datacadastro = $session_youtube['datacadastro'];
 								<li>
 									<a href="#">
 										<div class="pull-left">
-											<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+											<img src="<?= base_url(); ?>assets/img//user4-128x128.jpg" class="img-circle" alt="User Image">
 										</div>
 										<h4>
 											Reviewers
@@ -226,17 +228,17 @@ $datacadastro = $session_youtube['datacadastro'];
 				<!-- User Account: style can be found in dropdown.less -->
 				<li class="dropdown user user-menu">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<img src="<?= base_url() ?>assets/img/user2-160x160.jpg" class="user-image" alt="User Image">
+						<img src="<?= base_url(); ?>assets/img/01avatar.png" class="user-image" alt="User Image">
 						<span class="hidden-xs"><?= $nomeUsuario; ?></span>
 					</a>
 					<ul class="dropdown-menu">
 						<!-- User image -->
 						<li class="user-header">
-							<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+							<img src="<?= base_url(); ?>assets/img/01avatar.png" class="img-circle" alt="User Image">
 
 							<p>
-								<?= $nomeUsuario; ?> - Web Developer
-								<small>Membro desde de <?= $datacadastro; ?> <br><?= $emailUsario; ?> </small>
+								<?= $nomeUsuario; ?>
+								<small>Membro desde <?= $datacadastro; ?><br> <?= $emailUsario; ?></small>
 							</p>
 						</li>
 						<!-- Menu Body -->
@@ -269,6 +271,7 @@ $datacadastro = $session_youtube['datacadastro'];
 				<li>
 					<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
 				</li>
+
 			</ul>
 		</div>
 
