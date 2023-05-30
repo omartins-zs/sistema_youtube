@@ -146,3 +146,21 @@
 		</div>
 	</section>
 </div>
+<!-- Script Page JS -->
+<script src="<?= base_url() ?>assets/js/jquery/jquery-2.2.3.min.js"></script>
+<script>
+	var base_url = '<?= base_url() ?>';
+	$(document).ready(function() {
+
+	});
+
+	function buscaInfo(perfil) {
+		var perfil = perfil;
+		var url = base_url + "home/buscausuarioperfil";
+		$.post(url, {
+			perfil: perfil
+		}, function(data) {
+			$('#resultado').html(data);
+		});
+	}
+</script>
