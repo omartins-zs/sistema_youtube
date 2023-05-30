@@ -58,3 +58,9 @@ $route['paineldecontrole'] = 'dashboard';
 
 $route['requisicaoajax'] = 'requisicaoajax';
 $route['buscaUsuarioPerfil'] = 'buscaUsuarioPerfil';
+
+/*
+ * Usuarios
+ */
+$route['listausuario'] = "home/listausuario";
+$route['consultausuario'] = "home/consultausuario";
