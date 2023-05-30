@@ -164,7 +164,6 @@ class Home extends CI_Controller
 		// }
 	}
 
-
 	function atualizausuario()
 	{
 		// if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
@@ -205,6 +204,7 @@ class Home extends CI_Controller
 		}
 		// }
 	}
+
 
 	/*
     * CLIENTES
@@ -267,6 +267,67 @@ class Home extends CI_Controller
 		}
 	}
 
+
+	/*
+     * Produtos
+     */
+
+	function cadastraproduto()
+	{
+		if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+			$this->load->model('Perfil_model');
+			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
+			$dados['resultadoPerfil'] = $resultadoPerfil;
+
+			if ($this->input->post()) {
+				if (
+					(!empty(trim($this->input->post('descricaoproduto')))) &&
+					(!empty(trim($this->input->post('unidade')))) &&
+					(!empty(trim($this->input->post('valormercadoria')))) &&
+					(!empty(trim($this->input->post('valorvenda')))) &&
+					(!empty(trim($this->input->post('qtdeestoque')))) &&
+					(!empty(trim($this->input->post('descontopermitido')))) &&
+					(!empty(trim($this->input->post('alertaestoque')))) &&
+					(!empty(trim($this->input->post('qtdevendaminima')))) &&
+					(!empty(trim($this->input->post('qtdevalorminimo'))))
+					//&& (!empty(trim($this->input->post('codigoean'))))
+
+				) {
+					$dadoscliente['descricaoproduto'] = $this->input->post('descricaoproduto');
+					$dadoscliente['unidade'] = $this->input->post('unidade');
+					$dadoscliente['valormercadoria'] = $this->input->post('valormercadoria');
+					$dadoscliente['valorvenda'] = $this->input->post('valorvenda');
+					$dadoscliente['qtdeestoque'] = $this->input->post('qtdeestoque');
+					$dadoscliente['descontopermitido'] = $this->input->post('descontopermitido');
+					$dadoscliente['alertaestoque'] = $this->input->post('alertaestoque');
+					$dadoscliente['qtdevendaminima'] = $this->input->post('qtdevendaminima');
+					$dadoscliente['qtdevalorminimo'] = $this->input->post('qtdevalorminimo');
+					// $dadoscliente['codigoean'] = $this->input->post('codigoean');
+
+					$this->load->model('Produto_model');
+					$resultadocadastroproduto = $this->Produto_model->cadastraproduto($dadoscliente);
+
+					if ($resultadocadastroproduto) {
+						// redirect('listaproduto', 'refresh');
+					} else {
+						$dados['telaativa'] = 'produtos';
+						$dados['msg'] = 'Ocorreu um erro ao cadastrar o Produto! Atualize a p�gina e tente novamente';
+						$dados['tela'] = 'produtos/cadastro_produto';
+					}
+					$this->load->view('pages/home', $dados);
+				} else {
+					$dados['telaativa'] = 'produtos';
+					$dados['msg'] = 'Dados Imcompletos! Preencha os dados e tente novamente';
+					$dados['tela'] = 'produtos/cadastro_produto';
+					$this->load->view('pages/home', $dados);
+				}
+			} else {
+				$dados['telaativa'] = 'produtos';
+				$dados['tela'] = 'produtos/cadastro_produto';
+				$this->load->view('pages/home', $dados);
+			}
+		}
+	}
 	/*
 	* AUXILIARES (AJAX)
 	*/
