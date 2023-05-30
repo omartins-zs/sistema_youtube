@@ -60,6 +60,22 @@ echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
 					<li><a href="listacliente"><i class="fa fa-circle-o"></i> Lista</a></li>
 				</ul>
 			</li>
+			<li class="<?php if ($menuativo === "produtos") {
+							echo "active";
+						} ?> treeview">
+				<a href="#">
+					<i class="fa fa-cubes"></i>
+					<span>Produtos</span>
+					<span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+					</span>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="cadastraproduto"><i class="fa fa-circle-o"></i> Cadastro</a></li>
+					<li><a href="consultaproduto"><i class="fa fa-circle-o"></i> Consulta</a></li>
+					<li><a href="listaproduto"><i class="fa fa-circle-o"></i> Lista</a></li>
+				</ul>
+			</li>
 			<li class="treeview">
 				<a href="#">
 					<i class="fa fa-files-o"></i>
