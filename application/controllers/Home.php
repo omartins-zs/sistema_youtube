@@ -163,4 +163,46 @@ class Home extends CI_Controller
 		}
 		// }
 	}
+
+
+	function atualizausuario()
+	{
+		// if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+		$this->load->model('Perfil_model');
+		$resultadoPerfil = $this->Perfil_model->buscaPerfil();
+		$dados['resultadoPerfil'] = $resultadoPerfil;
+
+		if ($this->input->post()) {
+			if ((!empty(trim($this->input->post('id')))) || (!empty(trim($this->input->post('nome')))) || (!empty(trim($this->input->post('login')))) || (!empty(trim($this->input->post('email'))))) {
+				$dadosusuario['id'] = $this->input->post('id');
+				$dadosusuario['nome'] = $this->input->post('nome');
+				$dadosusuario['login'] = $this->input->post('login');
+				$dadosusuario['email'] = $this->input->post('email');
+
+				$this->load->model('Usuario_model');
+				$resultadoatualizausuario = $this->Usuario_model->atualizausuario($dadosusuario);
+				if ($resultadoatualizausuario) {
+					$dados['telaativa'] = 'usuarios';
+					$dados['msg'] = 'Usuário alterado com sucesso!';
+					$dados['tela'] = 'usuarios/form_consulta_usuario';
+					$this->load->view('pages/home', $dados);
+				} else {
+					$dados['telaativa'] = 'usuarios';
+					$dados['msg'] = 'Ocorreu um erro ao alterar o usuario! Atualize a página e tente novamente';
+					$dados['tela'] = 'usuarios/form_consulta_usuario';
+					$this->load->view('pages/home', $dados);
+				}
+			} else {
+				$dados['telaativa'] = 'usuarios';
+				$dados['msg'] = 'Dados Imcompletos! Preencha os dados e tente novamente';
+				$dados['tela'] = 'usuarios/form_consulta_usuario';
+				$this->load->view('pages/home', $dados);
+			}
+		} else {
+			$dados['telaativa'] = 'usuarios';
+			$dados['tela'] = 'usuarios/cadastro_usuario';
+			$this->load->view('pages/home', $dados);
+		}
+		// }
+	}
 }
