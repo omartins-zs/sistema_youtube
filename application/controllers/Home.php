@@ -17,6 +17,7 @@ class Home extends CI_Controller
 	{
 		redirect('login');
 	}
+
 	public function logout()
 	{
 		$this->session->unset_userdata('logged_in');
@@ -26,6 +27,10 @@ class Home extends CI_Controller
 
 	public function dashboard()
 	{
-		redirect('login');
+		// if ($this->session->userdata('logged_in')) { // VALIDA USUÁRIO LOGADO
+		$this->load->view('pages/home');
+		// } else {
+		// redirect('login', 'refresh');
+		// }
 	}
 }
