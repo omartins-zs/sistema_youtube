@@ -205,4 +205,32 @@ class Home extends CI_Controller
 		}
 		// }
 	}
+
+	/*
+	* AUXILIARES (AJAX)
+	*/
+
+	public function buscaUsuarioPerfil()
+	{
+		// Valida se o Usuario esta Logado
+		if ($this->session->userdata('logged_in')) {
+			$option = "";
+
+			if ($this->input->post()) {
+				$perfil = $this->input->post('perfil');
+				$this->load->model('Usuario_model');
+				$resultadoUsuarioPerfil = $this->Usuario_model->buscaUsuarioPerfil($perfil);
+				if ($resultadoUsuarioPerfil) {
+					foreach ($resultadoUsuarioPerfil as $Usuario) {
+						$option .= $Usuario->nome;
+					}
+				} else {
+					$option .= 'Nenhum Valor Encontrado';
+				}
+			} else {
+				$option .= 'Nenhum Valor Encontrado';
+			}
+			echo $option;
+		}
+	}
 }
