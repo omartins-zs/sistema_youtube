@@ -7,11 +7,16 @@ class Autentica extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		// $this->load->helper('url');
-		// $this->load->library('form_validation');
 		$this->load->helper('url');
-		$this->load->model('Usuario_model', TRUE);
-		// date_default_timezone_set('America/Sao_Paulo');
+		$this->load->helper('security');
+		$this->load->model('Usuario_model', '', TRUE);
+	}
+
+	public function logout()
+	{
+		$this->session->unset_userdata('logged_in');
+		session_destroy();
+		redirect('home', 'refresh');
 	}
 
 	public function index()
@@ -21,11 +26,14 @@ class Autentica extends CI_Controller
 		// Explicação do Form validation -> Tipo do campo | Nome para substituir '%s' | Regra
 		$this->form_validation->set_message('required', 'Campo %s obrigatório');
 		$this->form_validation->set_rules('login', 'Usuário', 'trim|required');
-		$this->form_validation->set_rules('password', 'Senha', 'trim|required');
+		$this->form_validation->set_rules('senha', 'Senha', 'trim|required');
 
 		if ($this->form_validation->run() == FALSE) {
+			// Falha na validação e direciona para Pagina de Login
 			redirect('login', 'refresh');
+			// $this->load->view('pages/login');
 		} else {
+			// Validação OK -> Acesso a área Privada
 
 			$login = $this->input->post('login');
 			$senha = $this->input->post('senha');
@@ -38,14 +46,16 @@ class Autentica extends CI_Controller
 
 				foreach ($resultadoUsuario as $usuario) {
 					$config_array = array(
+						'UsuarioId' => $usuario->id,
 						'nomeUsuario' => $usuario->nome,
 						'loginUsuario' => $usuario->login,
 						'emailUsuario' => $usuario->email,
-						'dataCadastro' => $usuario->dataCdastro
+						'datacadastro' => $usuario->datacadastro
 					);
 				}
-				
+
 				$this->session->set_userdata('logged_in', $config_array);
+				// redirect -> Redireciona para controller e o metodo
 				redirect('home/dashboard', 'refresh');
 			} else {
 				redirect('login', 'refresh');
