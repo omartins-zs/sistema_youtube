@@ -406,6 +406,38 @@ class Home extends CI_Controller
 			}
 		}
 	}
+
+	function consultaproduto()
+	{
+		if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+			$this->load->model('Perfil_model');
+			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
+			$dados['resultadoPerfil'] = $resultadoPerfil;
+
+			if ($this->input->post()) {
+				$dados['descricaoproduto'] = $this->input->post('descricaoproduto');
+				$dados['codigoean'] = $this->input->post('codigoean');
+
+				if ((!empty($dados['descricaoproduto'])) || (!empty($dados['codigoean']))) {
+					$this->load->model('Produto_model');
+					$resultadoprodutos = $this->Produto_model->carregaprodutosfiltro($dados);
+					$dados['resultadoProduto'] = $resultadoprodutos;
+					$dados['telaativa'] = 'produtos';
+					$dados['tela'] = 'produtos/lista_produto';
+					$this->load->view('pages/home', $dados);
+				} else {
+					$dados['telaativa'] = 'produtos';
+					$dados['tela'] = 'produtos/form_consulta_produto';
+					$this->load->view('pages/home', $dados);
+				}
+			} else {
+				$dados['telaativa'] = 'produtos';
+				$dados['tela'] = 'produtos/form_consulta_produto';
+				$this->load->view('pages/home', $dados);
+			}
+		}
+	}
+
 	/*
 	* AUXILIARES (AJAX)
 	*/
