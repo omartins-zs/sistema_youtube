@@ -306,6 +306,27 @@ class Home extends CI_Controller
 		}
 	}
 
+	function listacliente()
+	{
+		if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+			$this->load->model('Perfil_model');
+			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
+			$dados['resultadoPerfil'] = $resultadoPerfil;
+
+			if ($this->input->post()) {
+			} else {
+				$this->load->model('Clieente_model');
+				$resultadoClienteLista = $this->Clieente_model->buscaclienteslista();
+				// var_dump($resultadoClienteLista);
+				// die;
+				$dados['clientelista'] = $resultadoClienteLista;
+				$dados['telaativa'] = 'clientes';
+				$dados['tela'] = 'clientes/lista_cliente';
+				$this->load->view('pages/home', $dados);
+			}
+		}
+	}
+
 	/*
      * Produtos
      */
