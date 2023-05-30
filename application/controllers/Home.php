@@ -94,4 +94,18 @@ class Home extends CI_Controller
 		}
 		// }
 	}
+
+	function listausuario()
+	{
+		// if ($this->session->userdata('logged_in')) { // VALIDA USUURIO LOGADO
+		$this->load->model('Usuario_model');
+		$resultadoUsuarios = $this->Usuario_model->buscaUsuarios();
+		//var_dump($resultadoUsuarios);
+		$dados['resultadoUsuario'] = $resultadoUsuarios;
+
+		$dados['telaativa'] = 'usuarios';
+		$dados['tela'] = 'usuarios/lista_usuario';
+		$this->load->view('pages/home', $dados);
+		// }
+	}
 }
