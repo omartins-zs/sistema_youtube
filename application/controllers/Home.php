@@ -267,6 +267,44 @@ class Home extends CI_Controller
 		}
 	}
 
+	function consultacliente()
+	{
+		if ($this->session->userdata('logged_in')) { // VALIDA USUARIO LOGADO
+			$this->load->model('Perfil_model');
+			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
+			$dados['resultadoPerfil'] = $resultadoPerfil;
+
+			if ($this->input->post()) {
+				$dados['nomefantasia'] = $this->input->post('nomefantasia');
+				$dados['razaosocial'] = $this->input->post('razaosocial');
+				$dados['cnpj'] = $this->input->post('cnpj');
+				$dados['cpf'] = $this->input->post('cpf');
+				$dados['email'] = $this->input->post('email');
+				if ((!empty($dados['nomefantasia'])) || (!empty($dados['razaosocial'])) || (!empty($dados['cnpj'])) || (!empty($dados['cpf'])) || (!empty($dados['email']))) {
+					$this->load->model('Cliente_model');
+					$resultado = $this->Cliente_model->buscaclientefiltro($dados);
+					if ($resultado) {
+						$dados['clientelista'] = $resultado;
+						$dados['telaativa'] = 'clientes';
+						$dados['tela'] = 'clientes/lista_cliente';
+						$this->load->view('pages/home', $dados);
+					} else {
+						$dados['telaativa'] = 'clientes';
+						$dados['tela'] = 'clientes/form_consulta_cliente';
+						$this->load->view('pages/home', $dados);
+					}
+				} else {
+					$dados['telaativa'] = 'clientes';
+					$dados['tela'] = 'clientes/form_consulta_cliente';
+					$this->load->view('pages/home', $dados);
+				}
+			} else {
+				$dados['telaativa'] = 'clientes';
+				$dados['tela'] = 'clientes/form_consulta_cliente';
+				$this->load->view('pages/home', $dados);
+			}
+		}
+	}
 
 	/*
      * Produtos
