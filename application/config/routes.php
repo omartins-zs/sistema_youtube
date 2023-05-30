@@ -76,3 +76,4 @@ $route['listacliente'] = "home/listacliente";
  * Produtos
  */
 $route['cadastraproduto'] = "home/cadastraproduto";
+$route['listaproduto'] = "home/listaproduto";
