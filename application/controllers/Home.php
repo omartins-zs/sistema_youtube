@@ -315,8 +315,8 @@ class Home extends CI_Controller
 
 			if ($this->input->post()) {
 			} else {
-				$this->load->model('Clieente_model');
-				$resultadoClienteLista = $this->Clieente_model->buscaclienteslista();
+				$this->load->model('Cliente_model');
+				$resultadoClienteLista = $this->Cliente_model->buscaclienteslista();
 				// var_dump($resultadoClienteLista);
 				// die;
 				$dados['clientelista'] = $resultadoClienteLista;

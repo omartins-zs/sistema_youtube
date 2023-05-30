@@ -33,4 +33,18 @@ class Cliente_model extends CI_Model
 			return false;
 		}
 	}
+
+	function buscaclienteslista()
+	{
+		$this->db->select('*');
+		$this->db->from('clientes');
+		//$this->db->where('status','1');
+		//$this->db->limit(1);
+		$query = $this->db->get();
+		if ($query) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
 }
