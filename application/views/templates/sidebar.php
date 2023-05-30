@@ -44,6 +44,22 @@ echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
 					<!--                              <li><a href="#"><i class="fa fa-circle-o"></i> Relat&oacute;rio</a></li>-->
 				</ul>
 			</li>
+			<li class="<?php if ($menuativo === "clientes") {
+							echo "active";
+						} ?> treeview">
+				<a href="#">
+					<i class="fa fa-suitcase"></i>
+					<span>Clientes</span>
+					<span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+					</span>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="cadastracliente"><i class="fa fa-circle-o"></i> Cadastro</a></li>
+					<li><a href="consultacliente"><i class="fa fa-circle-o"></i> Consulta</a></li>
+					<li><a href="listacliente"><i class="fa fa-circle-o"></i> Lista</a></li>
+				</ul>
+			</li>
 			<li class="treeview">
 				<a href="#">
 					<i class="fa fa-files-o"></i>
