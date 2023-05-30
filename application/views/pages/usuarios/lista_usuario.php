@@ -30,6 +30,7 @@
 							<table id="example1" class="table table-bordered table-striped">
 								<thead>
 									<tr>
+										<th style="width:24px">&nbsp;</th>
 										<th>Nome do Usuario</th>
 										<th>Login</th>
 										<th>E-mail</th>
@@ -43,6 +44,7 @@
 										foreach ($resultadoUsuario as $usuarios) {
 									?>
 											<tr>
+												<td><a href="consultausuario?id=<?= $usuarios->id; ?>"><i class="fa fa-pencil-square-o"></i></a></td>
 												<td><?= $usuarios->nome; ?></td>
 												<td><?= $usuarios->login; ?></td>
 												<td><?= $usuarios->email; ?></td>
