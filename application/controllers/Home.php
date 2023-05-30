@@ -207,6 +207,67 @@ class Home extends CI_Controller
 	}
 
 	/*
+    * CLIENTES
+    */
+
+	function cadastracliente()
+	{
+		if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+			$this->load->model('Perfil_model');
+			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
+			$dados['resultadoPerfil'] = $resultadoPerfil;
+
+			if ($this->input->post()) {
+
+				if (
+					(!empty(trim($this->input->post('nomefantasia')))) && (!empty(trim($this->input->post('razaosocial')))) &&
+					//((!empty(trim($this->input->post('cnpj')))) && (!empty(trim($this->input->post('cpf'))))) &&
+					(!empty(trim($this->input->post('telefone')))) && (!empty(trim($this->input->post('celular')))) && (!empty(trim($this->input->post('email')))) && (!empty(trim($this->input->post('endereco')))) &&
+					(!empty(trim($this->input->post('complemento')))) && (!empty(trim($this->input->post('bairro')))) && (!empty(trim($this->input->post('cidade')))) && (!empty(trim($this->input->post('estado')))) &&
+					(!empty(trim($this->input->post('cep'))))
+				) {
+					$dadoscliente['nomefantasia'] = $this->input->post('nomefantasia');
+					$dadoscliente['razaosocial'] = $this->input->post('razaosocial');
+					$dadoscliente['cnpj'] = $this->input->post('cnpj');
+					$dadoscliente['cpf'] = $this->input->post('cpf');
+					$dadoscliente['telefone'] = $this->input->post('telefone');
+					$dadoscliente['celular'] = $this->input->post('celular');
+					$dadoscliente['email'] = $this->input->post('email');
+					$dadoscliente['endereco'] = $this->input->post('endereco');
+					$dadoscliente['complemento'] = $this->input->post('complemento');
+					$dadoscliente['bairro'] = $this->input->post('bairro');
+					$dadoscliente['cidade'] = $this->input->post('cidade');
+					$dadoscliente['estado'] = $this->input->post('estado');
+					$dadoscliente['cep'] = $this->input->post('cep');
+
+					$this->load->model('Cliente_model');
+					$resultadocadastrocliente = $this->Cliente_model->cadastracliente($dadoscliente);
+
+					if ($resultadocadastrocliente) {
+						$dados['telaativa'] = 'clientes';
+						$dados['msg'] = 'Cliente cadastrado com sucesso!!!';
+						$dados['tela'] = 'clientes/cadastro_cliente';
+					} else {
+						$dados['telaativa'] = 'clientes';
+						$dados['msg'] = 'Ocorreu um erro ao cadastrar o usuario! Atualize a página e tente novamente';
+						$dados['tela'] = 'clientes/cadastro_cliente';
+					}
+					$this->load->view('pages/home', $dados);
+				} else {
+					$dados['telaativa'] = 'clientes';
+					$dados['msg'] = 'Dados Imcompletos! Preencha os dados e tente novamente';
+					$dados['tela'] = 'clientes/cadastro_cliente';
+					$this->load->view('pages/home', $dados);
+				}
+			} else {
+				$dados['telaativa'] = 'clientes';
+				$dados['tela'] = 'clientes/cadastro_cliente';
+				$this->load->view('pages/home', $dados);
+			}
+		}
+	}
+
+	/*
 	* AUXILIARES (AJAX)
 	*/
 
