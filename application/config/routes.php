@@ -64,3 +64,8 @@ $route['buscaUsuarioPerfil'] = 'buscaUsuarioPerfil';
  */
 $route['listausuario'] = "home/listausuario";
 $route['consultausuario'] = "home/consultausuario";
+
+/*
+ * Clientes
+ */
+$route['cadastracliente'] = "home/cadastracliente";
