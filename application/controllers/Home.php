@@ -33,4 +33,18 @@ class Home extends CI_Controller
 		// redirect('login', 'refresh');
 		// }
 	}
+	public function requisicaoajax()
+	{
+		// Valida se o Usuario está Logado
+		if ($this->session->userdata('logged_in')) {
+			$this->load->model('Perfil_model');
+			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
+
+			$dados['resultadoPerfil'] = $resultadoPerfil;
+			$dados['tela'] = 'requisicaoajax';
+			$this->load->view('pages/home', $dados);
+		} else {
+			redirect('login', 'refresh');
+		}
+	}
 }
