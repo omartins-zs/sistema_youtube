@@ -37,8 +37,101 @@
 										<input type="text" class="form-control" id="razaosocial" name="razaosocial" placeholder="Informe a Razão Social" value="<?= set_value('razaosocial'); ?>">
 									</div>
 								</div>
+								<div class="form-group">
+									<label for="tipocliente" class="col-sm-2 control-label">Tipo Cliente</label>
+									<div class="col-sm-5">
+										<input type="radio" class="flat-red" id="cnpj" name="cnpj"><label for="tipocliente" class="control-label">&nbsp;&nbsp;Pessoa Juridica</label>
+									</div>
+									<div class="col-sm-5">
+										<input type="radio" class="flat-red" id="cnpj" name="cnpj"><label for="tipocliente" class="control-label">&nbsp;&nbsp;Pessoa Fisica</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="cnpj" class="col-sm-2 control-label">CNPJ</label>
 
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Informe o CNPJ" value="<?= set_value('cnpj'); ?>">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="cpf" class="col-sm-2 control-label">CPF</label>
 
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="cpf" name="cpf" placeholder="Informe o CPF" value="<?= set_value('cpf'); ?>" readonly="readonly">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="telefone" class="col-sm-2 control-label">Telefone Comercial</label>
+
+									<div class="col-sm-10">
+										<input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Informe o telefone comercial" value="<?= set_value('telefone'); ?>">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="celular" class="col-sm-2 control-label">Telefone Celular</label>
+
+									<div class="col-sm-10">
+										<input type="tel" class="form-control" id="celular" name="celular" placeholder="Informe o telefone celular" value="<?= set_value('celular'); ?>">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="email" class="col-sm-2 control-label">E-mail</label>
+
+									<div class="col-sm-10">
+										<input type="email" class="form-control" id="email" name="email" placeholder="Informe o E-mail" value="<?= set_value('email'); ?>">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="endereco" class="col-sm-2 control-label">Endereço Completo</label>
+
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="endereco" name="endereco" placeholder="Informe o Endereço" value="<?= set_value('endereco'); ?>">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="complemento" class="col-sm-2 control-label">Complemento</label>
+
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="complemento" name="complemento" placeholder="Informações complementares" value="<?= set_value('complemento'); ?>">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="bairro" class="col-sm-2 control-label">Bairro</label>
+
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="bairro" name="bairro" placeholder="Informe o Bairro" value="<?= set_value('bairro'); ?>">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="cidade" class="col-sm-2 control-label">Cidade</label>
+
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="cidade" name="cidade" placeholder="Informe a Cidade" value="<?= set_value('cidade'); ?>">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="estado" class="col-sm-2 control-label">Estado</label>
+
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="estado" name="estado" placeholder="Informe o Estado" value="<?= set_value('estado'); ?>">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="cep" class="col-sm-2 control-label">CEP</label>
+
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="cep" name="cep" placeholder="Informe o CEP" value="<?= set_value('cep'); ?>">
+									</div>
+								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-xs-12 col-sm-9 col-lg-9">&nbsp;</div>
