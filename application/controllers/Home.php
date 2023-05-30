@@ -108,4 +108,59 @@ class Home extends CI_Controller
 		$this->load->view('pages/home', $dados);
 		// }
 	}
+
+	function consultausuario()
+	{
+		// if ($this->session->userdata('logged_in')) { // VALIDA USUARIO LOGADO
+		$this->load->model('Usuario_model');
+		if ($this->input->post()) {
+			if ((!empty(trim($this->input->post('nome')))) || (!empty(trim($this->input->post('login')))) || (!empty(trim($this->input->post('email'))))) {
+				$dadosusuario['nome'] = $this->input->post('nome');
+				$dadosusuario['login'] = $this->input->post('login');
+				$dadosusuario['email'] = $this->input->post('email');
+
+				$this->load->model('Usuario_model');
+				$resultadousuario = $this->Usuario_model->consultausuario($dadosusuario);
+				if ($resultadousuario) {
+					$dados['telaativa'] = 'usuarios';
+					$dados['resultadoUsuario'] = $resultadousuario;
+					$dados['tela'] = 'usuarios/lista_usuario';
+					$this->load->view('pages/home', $dados);
+				} else {
+					$dados['telaativa'] = 'usuarios';
+					$dados['msg'] = 'Nenhum Usuário localizado para os dados informados! Tente novamente';
+					$dados['tela'] = 'usuarios/lista_usuario';
+					$this->load->view('pages/home', $dados);
+				}
+			} else {
+				$dados['telaativa'] = 'usuarios';
+				$dados['msg'] = 'Dados Imcompletos! Preencha os dados e tente novamente';
+				$dados['tela'] = 'usuarios/form_consulta_usuario';
+				$this->load->view('pages/home', $dados);
+			}
+		} else if ($this->input->get()) {
+			if ($this->input->get('id')) {
+				$id = (int) $this->input->get('id');
+
+				$this->load->model('Usuario_model');
+				$resultadousuarioespecifico = $this->Usuario_model->consultausuarioespecifico($id);
+				if ($resultadousuarioespecifico) {
+					$dados['telaativa'] = 'usuarios';
+					$dados['resultadoUsuarioEspecifico'] = $resultadousuarioespecifico;
+					$dados['tela'] = 'usuarios/form_altera_usuario';
+					$this->load->view('pages/home', $dados);
+				} else {
+					$dados['telaativa'] = 'usuarios';
+					$dados['msg'] = 'Nenhum Usuário localizado para os dados informados! Tente novamente';
+					$dados['tela'] = 'usuarios/lista_usuario';
+					$this->load->view('pages/home', $dados);
+				}
+			}
+		} else {
+			$dados['telaativa'] = 'usuarios';
+			$dados['tela'] = 'usuarios/form_consulta_usuario';
+			$this->load->view('pages/home', $dados);
+		}
+		// }
+	}
 }
