@@ -144,3 +144,108 @@
 		</form>
 	</section>
 </div>
+
+<script src="<?= base_url(); ?>assets/js/jquery/jquery-2.2.3.min.js"></script>
+
+<!-- <script src="<?= base_url(); ?>assets/js/bootstrap/bootstrap.min.js"></script> -->
+<script src="<?= base_url(); ?>assets/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url(); ?>assets/datatables/dataTables.bootstrap.min.js"></script>
+
+<script>
+	$('#example1').DataTable({
+		"bLengthChange": true,
+		"info": true,
+		"bFilter": true,
+		responsive: true,
+		"language": {
+			"lengthMenu": "Exibindo _MENU_ produtos por pagina",
+			"zeroRecords": "Nenhum produto encontrado",
+			"info": "Exibindo página _PAGE_ de _PAGES_. Total de produtos: _TOTAL_",
+			"infoEmpty": "Nenhum produto localizado",
+			"infoFiltered": "(Filtrando um total de _MAX_ produtos)",
+			"decimal": "",
+			"emptyTable": "Nenhum produto localizado",
+			"infoPostFix": "",
+			"thousands": ",",
+			"bLengthChange": true,
+			"displayLength": 10,
+			//                                                            "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+			"loadingRecords": "Carregando...",
+			"processing": "Processando...",
+			"search": "Filtro:",
+			"sPaginationType": "full_numbers",
+			"paginate": {
+				"first": "Primeira",
+				"last": "Última",
+				"next": "Próxima",
+				"previous": "Anterior"
+			},
+			"aria": {
+				"sortAscending": ": activate to sort column ascending",
+				"sortDescending": ": activate to sort column descending"
+			}
+		},
+	});
+
+	var base_url = '<?= base_url() ?>';
+	$(document).ready(function() {
+
+	});
+
+	function buscaInfo(perfil) {
+		var perfil = perfil;
+		var url = base_url + "home/buscausuarioperfil";
+		$.post(url, {
+			perfil: perfil
+		}, function(data) {
+			$('#resultado').html(data);
+		});
+	}
+
+	function carregaid(idcliente) {
+		$('#clienteid').val(idcliente);
+	}
+
+	function limpacampo(id) {
+		var vlcampo = $('#' + id).val();
+		if (vlcampo > 0) {
+			//nada a fazer
+		} else {
+			$('#' + id).val('');
+		}
+	}
+
+	function verificanulo(id) {
+		var vlcampo = $('#' + id).val();
+		//alert(vlcampo);
+		if (vlcampo === '') {
+			$('#' + id).val(0);
+		}
+	}
+
+	function calcula() {
+		debugger;
+		var totalitens = '<?= $totalitens; ?>';
+
+		var vlmercardoria = 0;
+		var vlbruto = 0;
+		var i;
+		for (i = 1; i <= totalitens; i++) {
+			var campoqtde = 'QTDE' + i;
+			var vlqtde = $('#' + campoqtde).val();
+			var campodesc = 'DESC' + i;
+			var vldesc = $('#' + campodesc).val();
+			var campovend = 'VEND' + i;
+			var vlvend = $('#' + campovend).val();
+			if ((vldesc > 0) && (vlqtde > 0)) {
+				vlmercardoria = vlmercardoria + (vlqtde * ((vldesc * vlvend) / 100));
+			} else {
+				vlmercardoria = vlmercardoria + (vlqtde * vlvend);
+			}
+			vlbruto = vlbruto + (vlqtde * vlvend);
+		}
+
+		$('#valormercadoria').val(vlmercardoria);
+		$('#valorbruto').val(vlbruto);
+	}
+</script>
