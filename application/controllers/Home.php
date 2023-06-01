@@ -439,8 +439,8 @@ class Home extends CI_Controller
 	}
 
 	/*
-     * Pedidos
-     */
+    * Pedidos
+    */
 
 	function novopedido()
 	{
@@ -511,6 +511,22 @@ class Home extends CI_Controller
 
 				$dados['telaativa'] = 'pedido';
 				$dados['tela'] = 'pedidos/cadastro_pedido';
+				$this->load->view('pages/home', $dados);
+			}
+		}
+	}
+
+	function alterarpedido()
+	{
+		if ($this->session->userdata('logged_in')) { // VALIDA USUARIO LOGADO
+			$this->load->model('Perfil_model');
+			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
+			$dados['resultadoPerfil'] = $resultadoPerfil;
+
+			if ($this->input->post()) {
+			} else {
+				$dados['telaativa'] = 'pedido';
+				$dados['tela'] = 'produtos/form_consulta_produto';
 				$this->load->view('pages/home', $dados);
 			}
 		}
