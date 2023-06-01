@@ -439,6 +439,85 @@ class Home extends CI_Controller
 	}
 
 	/*
+     * Pedidos
+     */
+
+	function novopedido()
+	{
+		if ($this->session->userdata('logged_in')) { // VALIDA USUÁRIO LOGADO
+			$session_data = $this->session->userdata('logged_in');
+			$usuarioid = $session_data['UsuarioId'];
+			$this->load->model('Perfil_model');
+			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
+			$dados['resultadoPerfil'] = $resultadoPerfil;
+
+			$this->load->model('Cliente_model');
+			$resultadoClientes = $this->Cliente_model->carregaclientespedido();
+			$dados['resultadoClientes'] = $resultadoClientes;
+
+			$this->load->model('Produto_model');
+			$resultadoProdutos = $this->Produto_model->carregaprodutos();
+			$dados['resultadoProdutos'] = $resultadoProdutos;
+
+			if ($this->input->post()) {
+				var_dump($this->input->post());
+				die;
+				if (
+					(!empty(trim($this->input->post('clienteid')))) &&
+					(!empty(trim($this->input->post('codigopedido'))))
+				) {
+					$dadospedido['usuarioid'] = $usuarioid;
+					$dadospedido['clienteid'] = $this->input->post('clienteid');
+					$dadospedido['codigopedido'] = $this->input->post('codigopedido');
+					$dadospedido['valorbruto'] = 0;
+					$dadospedido['valorliquido'] = 0;
+					$this->load->model('Pedido_model');
+					$resultadocadastropedido = $this->Pedido_model->cadastrapedido($dadospedido);
+
+					if ($resultadocadastropedido) {
+						$dadositens['pedidoid'] = $resultadocadastropedido;
+						$dadositens['clienteid'] = $this->input->post('clienteid');
+						$dadositens['usuarioid'] = $usuarioid;
+						$dadositens['produtoid'] = 0;
+						$dadositens['quantidade'] = 0;
+						$dadositens['valormercadoria'] = 0;
+						$dadositens['valorvenda'] = 0;
+						$dadositens['desconto'] = 0;
+
+						$resultadocadastroitem = $this->Pedido_model->cadastraitens($dadositens);
+
+						if ($resultadocadastroitem) {
+							$dados['telaativa'] = 'pedido';
+							$dados['msg'] = 'Pedido cadastrado com sucesso!!!';
+							$dados['tela'] = 'pedidos/lista_pedidos';
+						} else {
+							$dados['telaativa'] = 'pedido';
+							$dados['msg'] = 'Ocorreu um erro ao cadastrar os itens do Pedido! Atualize a pagina e tente novamente';
+							$dados['tela'] = 'pedidos/cadastro_pedido';
+						}
+					} else {
+						$dados['telaativa'] = 'pedido';
+						$dados['msg'] = 'Ocorreu um erro ao cadastrar o Pedido! Atualize a pagina e tente novamente';
+						$dados['tela'] = 'pedidos/cadastro_pedido';
+					}
+					$this->load->view('home', $dados);
+				} else {
+					$dados['telaativa'] = 'pedido';
+					$dados['msg'] = 'Dados Imcompletos! Preencha os dados e tente novamente';
+					$dados['tela'] = 'pedidos/cadastro_pedido';
+					$this->load->view('pages/home', $dados);
+				}
+			} else {
+
+				$dados['telaativa'] = 'pedido';
+				$dados['tela'] = 'pedidos/cadastro_pedido';
+				$this->load->view('pages/home', $dados);
+			}
+		}
+	}
+
+
+	/*
 	* AUXILIARES (AJAX)
 	*/
 
