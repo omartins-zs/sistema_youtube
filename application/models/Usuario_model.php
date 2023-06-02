@@ -112,4 +112,20 @@ class Usuario_model extends CI_Model
 			return false;
 		}
 	}
+
+	function atualizausuario($dados = NULL)
+	{
+		if ($dados !== NULL) {
+			extract($dados);
+			$this->db->where('id', $dados['id']);
+			$this->db->update('usuarios', array(
+				'nome' => $dados['nome'],
+				'login' => $dados['login'],
+				'email' => $dados['email']
+			));
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
