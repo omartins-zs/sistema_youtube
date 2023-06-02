@@ -18,4 +18,17 @@ class Produto_model extends CI_Model
 			return false;
 		}
 	}
+
+	function carregaprodutos()
+	{
+		$this->db->select('*');
+		$this->db->from('produtos');
+
+		$query = $this->db->get();
+		if ($query) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
 }
