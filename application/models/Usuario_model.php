@@ -67,4 +67,35 @@ class Usuario_model extends CI_Model
 			return false;
 		}
 	}
+
+	function consultausuario($dados = NULL)
+	{
+		if ($dados !== NULL) {
+			extract($dados);
+			$this->db->select('*');
+			$this->db->from('usuarios');
+			$this->db->where('1 =1', null);
+
+			if (!empty($dados['nome'])) {
+				$this->db->like('nome', $dados['nome']);
+			}
+
+			if (!empty($dados['login'])) {
+				$this->db->where('login', $dados['login']);
+			}
+
+			if (!empty($dados['email'])) {
+				$this->db->where('email', $dados['email']);
+			}
+
+			$query = $this->db->get();
+			if ($query->num_rows() >= 1) {
+				return $query->result();
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 }
