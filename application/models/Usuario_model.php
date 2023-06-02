@@ -98,4 +98,18 @@ class Usuario_model extends CI_Model
 			return false;
 		}
 	}
+
+	function consultausuarioespecifico($id)
+	{
+		$this->db->select('*');
+		$this->db->from('usuarios');
+		$this->db->where('id', $id);
+
+		$query = $this->db->get();
+		if ($query->num_rows() === 1) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
 }
