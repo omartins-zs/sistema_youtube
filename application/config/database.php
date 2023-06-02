@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
@@ -76,8 +76,8 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'sistemayoutube',
-	'password' => 'Sistema_Youtube@#24',
+	'username' => 'root',
+	'password' => '',
 	'database' => 'sistemayoutube',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
