@@ -19,4 +19,19 @@ class Usuario_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result();
 	}
+	
+	function buscaUsuarioPerfil($perfil)
+	{
+		$this->db->select('nome');
+		$this->db->from('usuarios');
+		$this->db->where('perfilid', $perfil);
+		$this->db->where('status', '1');
+
+		$query = $this->db->get();
+		if ($query->num_rows() >= 1) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
 }
