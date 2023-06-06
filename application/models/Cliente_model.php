@@ -76,4 +76,16 @@ class Cliente_model extends CI_Model
 			return false;
 		}
 	}
+
+	function atualizacliente($dados = NULL)
+	{
+		if ($dados !== NULL) {
+			extract($dados);
+			$this->db->where('id', $dados['id']);
+			$this->db->update('clientes', $dados);
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
