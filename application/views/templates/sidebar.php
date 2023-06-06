@@ -97,6 +97,20 @@ echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
 					<li><a href="emissaopedido"><i class="fa fa-circle-o"></i> Emissão Pedido</a></li>
 				</ul>
 			</li>
+			<li class="<?php if ($menuativo === "agenda") {
+							echo "active";
+						} ?> treeview">
+				<a href="#">
+					<i class="fa fa-files-o"></i>
+					<span>Agenda</span>
+					<span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+					</span>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="agenda"><i class="fa fa-circle-o"></i> Agenda</a></li>
+				</ul>
+			</li>
 			<li class="treeview">
 				<a href="requicaoajax">
 					<i class="fa fa-dashboard"></i> <span>Requisicao JQUERY/AJAX</span>
