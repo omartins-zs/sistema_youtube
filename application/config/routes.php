@@ -80,3 +80,9 @@ $route['cadastraproduto'] = "home/cadastraproduto";
 $route['listaproduto'] = "home/listaproduto";
 $route['consultaproduto'] = "home/consultaproduto";
 $route['alteraproduto'] = "home/alteraproduto";
+
+
+/*
+ * Agenda
+ */
+$route['agenda'] = "home/agenda";
