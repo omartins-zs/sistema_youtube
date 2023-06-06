@@ -327,6 +327,72 @@ class Home extends CI_Controller
 		}
 	}
 
+	function alteracliente()
+	{
+		if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+			$this->load->model('Perfil_model');
+			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
+			$dados['resultadoPerfil'] = $resultadoPerfil;
+			$this->load->model('Cliente_model');
+
+			if ($this->input->post()) {
+				if ($this->input->post('nomefantasia')) {
+					if (
+						(!empty(trim($this->input->post('nomefantasia')))) && (!empty(trim($this->input->post('razaosocial')))) &&
+						//((!empty(trim($this->input->post('cnpj')))) && (!empty(trim($this->input->post('cpf'))))) &&
+						(!empty(trim($this->input->post('telefone')))) && (!empty(trim($this->input->post('celular')))) && (!empty(trim($this->input->post('email')))) && (!empty(trim($this->input->post('endereco')))) &&
+						(!empty(trim($this->input->post('complemento')))) && (!empty(trim($this->input->post('bairro')))) && (!empty(trim($this->input->post('cidade')))) && (!empty(trim($this->input->post('estado')))) &&
+						(!empty(trim($this->input->post('cep'))))
+					) {
+						$dadoscliente['id'] = $this->input->post('clienteid');
+						$dadoscliente['nomefantasia'] = $this->input->post('nomefantasia');
+						$dadoscliente['razaosocial'] = $this->input->post('razaosocial');
+						$dadoscliente['cnpj'] = $this->input->post('cnpj');
+						$dadoscliente['cpf'] = $this->input->post('cpf');
+						$dadoscliente['telefone'] = $this->input->post('telefone');
+						$dadoscliente['celular'] = $this->input->post('celular');
+						$dadoscliente['email'] = $this->input->post('email');
+						$dadoscliente['endereco'] = $this->input->post('endereco');
+						$dadoscliente['complemento'] = $this->input->post('complemento');
+						$dadoscliente['bairro'] = $this->input->post('bairro');
+						$dadoscliente['cidade'] = $this->input->post('cidade');
+						$dadoscliente['estado'] = $this->input->post('estado');
+						$dadoscliente['cep'] = $this->input->post('cep');
+
+						$resultadoClienteLista = $this->Cliente_model->atualizacliente($dadoscliente);
+						if ($resultadoClienteLista) {
+							redirect('listacliente', 'refresh');
+						} else {
+							$dados['clientelista'] = $resultadoClienteLista;
+							$dados['msg'] = '<font color="red"><b>Ocorreu um erro ao atualizar o cliente...</b></font>';
+							$dados['telaativa'] = 'clientes';
+							$dados['tela'] = 'clientes/form_altera_cliente';
+							$this->load->view('pages/home', $dados);
+						}
+					} else {
+						$dados['msg'] = '<font color="red"><b>Preencha todos os campos para continuar...</b></font>';
+						$dados['telaativa'] = 'clientes';
+						$dados['tela'] = 'clientes/form_altera_cliente';
+						$this->load->view('pages/home', $dados);
+					}
+				} else {
+					$resultadoClienteLista = $this->Cliente_model->buscaclienteslista();
+					$dados['clientelista'] = $resultadoClienteLista;
+					$dados['telaativa'] = 'clientes';
+					$dados['tela'] = 'clientes/form_altera_cliente';
+					$this->load->view('pages/home', $dados);
+				}
+			} else {
+				$clienteid = $this->input->post('idcliente');
+				$resultadoClienteLista = $this->Cliente_model->buscaclienteespecifico($clienteid);
+				$dados['clientelista'] = $resultadoClienteLista;
+				$dados['telaativa'] = 'clientes';
+				$dados['tela'] = 'clientes/lista_cliente';
+				$this->load->view('pages/home', $dados);
+			}
+		}
+	}
+
 	/*
      * Produtos
      */
