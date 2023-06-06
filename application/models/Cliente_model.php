@@ -62,4 +62,18 @@ class Cliente_model extends CI_Model
 			return false;
 		}
 	}
+
+	function buscaclienteespecifico($clienteid)
+	{
+		$this->db->select('*');
+		$this->db->from('clientes');
+		$this->db->where('id', $clienteid);
+		$this->db->limit(1);
+		$query = $this->db->get();
+		if ($query) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
 }
