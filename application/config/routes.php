@@ -79,3 +79,4 @@ $route['alteracliente'] = "home/alteracliente";
 $route['cadastraproduto'] = "home/cadastraproduto";
 $route['listaproduto'] = "home/listaproduto";
 $route['consultaproduto'] = "home/consultaproduto";
+$route['alteraproduto'] = "home/alteraproduto";
