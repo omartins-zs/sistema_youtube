@@ -414,9 +414,8 @@ class Home extends CI_Controller
 					(!empty(trim($this->input->post('descontopermitido')))) &&
 					(!empty(trim($this->input->post('alertaestoque')))) &&
 					(!empty(trim($this->input->post('qtdevendaminima')))) &&
-					(!empty(trim($this->input->post('qtdevalorminimo'))))
-					//&& (!empty(trim($this->input->post('codigoean'))))
-
+					(!empty(trim($this->input->post('qtdevalorminimo')))) &&
+					(!empty(trim($this->input->post('codigoean'))))
 				) {
 					$dadoscliente['descricaoproduto'] = $this->input->post('descricaoproduto');
 					$dadoscliente['unidade'] = $this->input->post('unidade');
@@ -427,7 +426,7 @@ class Home extends CI_Controller
 					$dadoscliente['alertaestoque'] = $this->input->post('alertaestoque');
 					$dadoscliente['qtdevendaminima'] = $this->input->post('qtdevendaminima');
 					$dadoscliente['qtdevalorminimo'] = $this->input->post('qtdevalorminimo');
-					// $dadoscliente['codigoean'] = $this->input->post('codigoean');
+					$dadoscliente['codigoean'] = $this->input->post('codigoean');
 
 					$this->load->model('Produto_model');
 					$resultadocadastroproduto = $this->Produto_model->cadastraproduto($dadoscliente);
