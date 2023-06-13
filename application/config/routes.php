@@ -86,3 +86,6 @@ $route['alteraproduto'] = "home/alteraproduto";
  * Agenda
  */
 $route['agenda'] = "home/agenda";
+
+
+$route['geracodigobarras'] = "home/geracodigobarras";
