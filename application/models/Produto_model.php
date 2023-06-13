@@ -32,6 +32,20 @@ class Produto_model extends CI_Model
 		}
 	}
 
+	function carregaprodutosporid($produtoid)
+	{
+		$this->db->select('*');
+		$this->db->from('produtos');
+		$this->db->where('id', $produtoid);
+
+		$query = $this->db->get();
+		if ($query) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
+
 	function carregaprodutosfiltro($dados)
 	{
 		if ($dados !== NULL) {
