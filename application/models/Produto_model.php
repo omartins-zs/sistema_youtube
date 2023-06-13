@@ -31,4 +31,30 @@ class Produto_model extends CI_Model
 			return false;
 		}
 	}
+
+	function carregaprodutosfiltro($dados)
+	{
+		if ($dados !== NULL) {
+			$this->db->select('*');
+			$this->db->from('produtos');
+			if (!empty($dados['descricaoproduto'])) {
+				$this->db->where('descricaoproduto', $dados['descricaoproduto']);
+			} else {
+				if (!empty($dados['codigoean'])) {
+					$this->db->where('codigoean', $dados['codigoean']);
+				} else {
+					$this->db->where('produtoid', 0);
+				}
+			}
+			$this->db->limit(1);
+			$query = $this->db->get();
+			if ($query) {
+				return $query->result();
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 }
