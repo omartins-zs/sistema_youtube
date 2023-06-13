@@ -92,6 +92,13 @@
 									</div>
 								</div>
 								<div class="form-group">
+									<label for="codigoean" class="col-sm-2 control-label">Código EAN</label>
+
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="codigoean" name="codigoean" placeholder="Informe o código EAN do produto" value="<?= set_value('codigoean'); ?>" onkeyup="geracodigobarra();">
+									</div>
+								</div>
+								<div class="form-group">
 									<span id="codigobarra" name="codigobarra"></span>
 								</div>
 								<div class="form-group">
