@@ -132,4 +132,14 @@
 			$('#resultado').html(data);
 		});
 	}
+
+	function geracodigobarra() {
+		var codigoean = $('#codigoean').val();
+		var url = base_url + "home/geracodigobarras";
+		$.post(url, {
+			codigoean: codigoean
+		}, function(data) {
+			$('#codigobarra').html('<img src=' + data + '>');
+		});
+	}
 </script>
