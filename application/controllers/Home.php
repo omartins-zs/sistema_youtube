@@ -493,12 +493,12 @@ class Home extends CI_Controller
 					$this->load->view('pages/home', $dados);
 				} else {
 					$dados['telaativa'] = 'produtos';
-					$dados['tela'] = 'produtos/form_consulta_produto';
+					$dados['tela'] = 'produtos/consulta_produto';
 					$this->load->view('pages/home', $dados);
 				}
 			} else {
 				$dados['telaativa'] = 'produtos';
-				$dados['tela'] = 'produtos/form_consulta_produto';
+				$dados['tela'] = 'produtos/consulta_produto';
 				$this->load->view('pages/home', $dados);
 			}
 		}
@@ -592,7 +592,7 @@ class Home extends CI_Controller
 			if ($this->input->post()) {
 			} else {
 				$dados['telaativa'] = 'pedido';
-				$dados['tela'] = 'produtos/form_consulta_produto';
+				$dados['tela'] = 'produtos/consulta_produto';
 				$this->load->view('pages/home', $dados);
 			}
 		}
@@ -624,6 +624,16 @@ class Home extends CI_Controller
 				$option .= 'Nenhum Valor Encontrado';
 			}
 			echo $option;
+		}
+	}
+
+	function geracodigobarras()
+	{
+		if ($this->input->post('codigoean')) {
+			$codigoean = $this->input->post('codigoean');
+			echo base_url('Barcode/barcode_generator') . '/code25/40/' . $codigoean . '/TRUE';
+		} else {
+			echo '';
 		}
 	}
 }
