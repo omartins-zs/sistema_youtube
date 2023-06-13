@@ -108,7 +108,13 @@
 												<input type="text" class="form-control" id="qtdevalorminimo" name="qtdevalorminimo" placeholder="Informe o valor minimo para venda" value="<?= $prod->qtdevalorminimo; ?>">
 											</div>
 										</div>
+										<div class="form-group">
+											<label for="codigoean" class="col-sm-2 control-label">Código EAN</label>
 
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="codigoean" name="codigoean" placeholder="Informe o código EAN do produto" value="<?= $prod->codigoean; ?>" onkeyup="geracodigobarra();">
+											</div>
+										</div>
 										<div class="form-group">
 											<div class="col-xs-12 col-sm-9 col-lg-9">&nbsp;</div>
 											<div class="col-xs-12 col-sm-3 col-lg-3">
@@ -127,4 +133,3 @@
 		</div>
 	</section>
 </div>
-
