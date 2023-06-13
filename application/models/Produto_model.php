@@ -71,4 +71,15 @@ class Produto_model extends CI_Model
 			return false;
 		}
 	}
+
+	function atualizaproduto($dados = NULL)
+	{
+		if ($dados !== NULL) {
+			$this->db->where('id', $dados['id']);
+			$this->db->update('produtos', $dados);
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
