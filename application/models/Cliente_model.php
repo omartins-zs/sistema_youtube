@@ -48,7 +48,6 @@ class Cliente_model extends CI_Model
 		}
 	}
 
-
 	function carregaclientespedido()
 	{
 		$this->db->select('id, nomefantasia');
@@ -84,6 +83,39 @@ class Cliente_model extends CI_Model
 			$this->db->where('id', $dados['id']);
 			$this->db->update('clientes', $dados);
 			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function buscaclientefiltro($dados)
+	{
+		if ($dados !== NULL) {
+			extract($dados);
+			$this->db->select('*');
+			$this->db->from('clientes');
+			if (!empty($dados['nomefantasia'])) {
+				$this->db->where('nomefantasia', $nomefantasia);
+			}
+			if (!empty($dados['razaosocial'])) {
+				$this->db->where('razaosocial', $razaosocial);
+			}
+			if (!empty($dados['cnpj'])) {
+				$this->db->where('cnpj', $cnpj);
+			}
+			if (!empty($dados['cpf'])) {
+				$this->db->where('cpf', $cpf);
+			}
+			if (!empty($dados['email'])) {
+				$this->db->where('email', $email);
+			}
+			$this->db->limit(100);
+			$query = $this->db->get();
+			if ($query) {
+				return $query->result();
+			} else {
+				return false;
+			}
 		} else {
 			return false;
 		}
