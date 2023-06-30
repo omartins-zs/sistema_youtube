@@ -6,7 +6,9 @@ AdminLTE 2.3.3 https://github.com/ColorlibHQ/AdminLTE/releases/tag/v2.3.3
 https://code.jquery.com/jquery-2.2.3.js jquery 2.2.3
 
 
-
+Repositorio Oficial: https://github.com/wagnerfariadossantos/projetoyoutube
+Repositorio de Ajuda: https://github.com/bieleite/FLIsys/tree/master
+Playlist do Tutorial: https://www.youtube.com/playlist?list=PLbRKoRdDZ_NMCW9eC8NenvasLcJ2izk1o
 
 CodeIgniter Framework
 CodeIgniter versão 3 - https://github.com/bcit-ci/CodeIgnite...
