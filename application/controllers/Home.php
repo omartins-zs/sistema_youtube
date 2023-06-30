@@ -667,6 +667,22 @@ class Home extends CI_Controller
 	}
 
 
+	function consultarpedido()
+	{
+		if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+			$this->load->model('Perfil_model');
+			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
+			$dados['resultadoPerfil'] = $resultadoPerfil;
+
+			if ($this->input->post()) {
+			} else {
+				$dados['telaativa'] = 'pedido';
+				$dados['tela'] = 'produtos/lista_produto';
+				$this->load->view('pages/home', $dados);
+			}
+		}
+	}
+
 	/*
 	* AUXILIARES (AJAX)
 	*/
