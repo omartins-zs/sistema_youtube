@@ -27,6 +27,7 @@ CREATE TABLE `sistemayoutube`.`perfil` ( `perfilid` INT NOT NULL AUTO_INCREMENT 
 
 ALTER TABLE `perfil` CHANGE `descricao` `descricao` VARCHAR(100) NOT NULL;
 
+ALTER TABLE `perfil` CHANGE `status` `status` BOOLEAN NOT NULL;
 
 INSERT INTO `perfil` (`perfilid`, `descricao`, `status`) VALUES
 (1, 'SUPER ADMINISTRADOR', 1),
@@ -37,3 +38,43 @@ INSERT INTO `perfil` (`perfilid`, `descricao`, `status`) VALUES
 (6, 'REPRESENTANTE (VENDEDOR)', 1),
 (7, 'CLIENTE', 1),
 (8, 'VISITANTE', 1);
+
+
+ALTER TABLE `usuarios` ADD `perfilid` INT NOT NULL AFTER `status`;
+
+ALTER TABLE `usuarios` CHANGE `status` `status` BOOLEAN NOT NULL;
+
+CREATE TABLE `sistemayoutube`.`clientes` ( `id` INT NOT NULL AUTO_INCREMENT , `nomefantasia` VARCHAR(200) NOT NULL , `razaosocial` VARCHAR(200) NOT NULL , `cnpj` VARCHAR(20) NOT NULL , `cpf` VARCHAR(15) NOT NULL , `telefone` VARCHAR(15) NOT NULL , `celular` VARCHAR(15) NOT NULL , `email` VARCHAR(200) NOT NULL , `endereco` VARCHAR(200) NOT NULL , `complemento` VARCHAR(100) NOT NULL , `bairro` VARCHAR(100) NOT NULL , `cidade` VARCHAR(100) NOT NULL , `estado` CHAR(2) NOT NULL , `cep` CHAR(8) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+ALTER TABLE `clientes` CHANGE `cpf` `cpf` VARCHAR(15) CHARACTER SET utf8 COLLATE utf8_general_ci NULL;
+
+ALTER TABLE `clientes` CHANGE `cnpj` `cnpj` VARCHAR(15) CHARACTER SET utf8 COLLATE utf8_general_ci NULL;
+
+
+CREATE TABLE `sistemayoutube`.`produtos` ( `id` INT NOT NULL AUTO_INCREMENT , `descricaoproduto` VARCHAR(100) NOT NULL , `unidade` INT NOT NULL , `valormercadoria` FLOAT NOT NULL , `valorvenda` FLOAT NOT NULL , `qtdeestoque` INT NOT NULL , `descontopermitido` FLOAT NOT NULL , `alertaestoque` INT NOT NULL , `qtdevendaminima` INT NOT NULL , `qtdevalorminimo` FLOAT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+
+CREATE TABLE `sistemayoutube`.`pedidos` ( `pedidoid` INT NOT NULL AUTO_INCREMENT , `usuarioid` INT NOT NULL , `clienteid` INT NOT NULL , `codigopedido` INT NOT NULL , `valorbruto` VARCHAR(20) NOT NULL , PRIMARY KEY (`pedidoid`)) ENGINE = InnoDB;
+
+
+ALTER TABLE `pedidos` ADD `valorliquido` VARCHAR(20) NOT NULL AFTER `valorbruto`;
+
+
+CREATE TABLE `sistemayoutube`.`pedidoitens` ( `pedidoitemid` INT NOT NULL AUTO_INCREMENT , `pedidoid` INT NOT NULL , `clienteid` INT NOT NULL , `usuarioid` INT NOT NULL , `produtoid` INT NOT NULL , `quantidade` INT NOT NULL , `valormercadoria` VARCHAR(20) NOT NULL , `valorvenda` VARCHAR(20) NOT NULL , PRIMARY KEY (`pedidoitemid`)) ENGINE = InnoDB;
+
+ALTER TABLE `clientes` ADD `status` VARCHAR(1) NOT NULL AFTER `cep`;
+
+ALTER TABLE `clientes` CHANGE `status` `status` INT NOT NULL DEFAULT '1';
+
+ALTER TABLE `clientes` CHANGE `status` `status` INT(11) NULL DEFAULT '1';
+
+ALTER TABLE `clientes` CHANGE `status` `status` VARCHAR(1) NULL;
+
+ALTER TABLE `produtos` ADD `codigoean` INT(25) NOT NULL AFTER `qtdevalorminimo`;
+
+ALTER TABLE `pedidoitens` ADD `desconto` DECIMAL(10,2) NOT NULL AFTER `valorvenda`;
+
+ALTER TABLE `pedidoitens` CHANGE `valormercadoria` `valormercadoria` DECIMAL(10,2) NOT NULL, CHANGE `valorvenda` `valorvenda` DECIMAL(10,2) NOT NULL;
+
+ALTER TABLE `produtos` CHANGE `descontopermitido` `descontopermitido` INT NOT NULL;
