@@ -699,6 +699,132 @@ class Home extends CI_Controller
 		}
 	}
 
+	/*
+     * Relatório
+     */
+
+	function relatorioclientes()
+	{
+		if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+			$this->load->model('Perfil_model');
+			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
+			$dados['resultadoPerfil'] = $resultadoPerfil;
+
+			if ($this->input->post()) {
+				if (
+					(!empty(trim($this->input->post('descricaoproduto')))) &&
+					(!empty(trim($this->input->post('unidade')))) &&
+					(!empty(trim($this->input->post('valormercadoria')))) &&
+					(!empty(trim($this->input->post('valorvenda')))) &&
+					(!empty(trim($this->input->post('qtdeestoque')))) &&
+					(!empty(trim($this->input->post('descontopermitido')))) &&
+					(!empty(trim($this->input->post('alertaestoque')))) &&
+					(!empty(trim($this->input->post('qtdevendaminima')))) &&
+					(!empty(trim($this->input->post('qtdevalorminimo'))))
+				) {
+					$dadoscliente['descricaoproduto'] = $this->input->post('descricaoproduto');
+					$dadoscliente['unidade'] = $this->input->post('unidade');
+					$dadoscliente['valormercadoria'] = $this->input->post('valormercadoria');
+					$dadoscliente['valorvenda'] = $this->input->post('valorvenda');
+					$dadoscliente['qtdeestoque'] = $this->input->post('qtdeestoque');
+					$dadoscliente['descontopermitido'] = $this->input->post('descontopermitido');
+					$dadoscliente['alertaestoque'] = $this->input->post('alertaestoque');
+					$dadoscliente['qtdevendaminima'] = $this->input->post('qtdevendaminima');
+					$dadoscliente['qtdevalorminimo'] = $this->input->post('qtdevalorminimo');
+
+					$this->load->model('Produto_model');
+					$resultadocadastroproduto = $this->Produto_model->cadastraproduto($dadoscliente);
+
+					if ($resultadocadastroproduto) {
+						$dados['telaativa'] = 'produtos';
+						$dados['msg'] = 'Produto cadastrado com sucesso!!!';
+						$dados['tela'] = 'produtos/lista_produto';
+					} else {
+						$dados['telaativa'] = 'produtos';
+						$dados['msg'] = 'Ocorreu um erro ao cadastrar o Produto! Atualize a p�gina e tente novamente';
+						$dados['tela'] = 'produtos/cadastro_produto';
+					}
+					$this->load->view('pages/home', $dados);
+				} else {
+					$dados['telaativa'] = 'produtos';
+					$dados['msg'] = 'Dados Imcompletos! Preencha os dados e tente novamente';
+					$dados['tela'] = 'produtos/cadastro_produto';
+					$this->load->view('pages/home', $dados);
+				}
+			} else {
+				$dados['telaativa'] = 'relatorios';
+				$dados['tela'] = 'produtos/cadastro_produto';
+				$this->load->view('pages/home', $dados);
+			}
+		}
+	}
+
+
+
+	/*
+     * Agenda
+     */
+
+	function agenda()
+	{
+		if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+			$this->load->model('Perfil_model');
+			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
+			$dados['resultadoPerfil'] = $resultadoPerfil;
+
+			if ($this->input->post()) {
+				if (
+					(!empty(trim($this->input->post('descricaoproduto')))) &&
+					(!empty(trim($this->input->post('unidade')))) &&
+					(!empty(trim($this->input->post('valormercadoria')))) &&
+					(!empty(trim($this->input->post('valorvenda')))) &&
+					(!empty(trim($this->input->post('qtdeestoque')))) &&
+					(!empty(trim($this->input->post('descontopermitido')))) &&
+					(!empty(trim($this->input->post('alertaestoque')))) &&
+					(!empty(trim($this->input->post('qtdevendaminima')))) &&
+					(!empty(trim($this->input->post('qtdevalorminimo'))))
+				) {
+					$dadoscliente['descricaoproduto'] = $this->input->post('descricaoproduto');
+					$dadoscliente['unidade'] = $this->input->post('unidade');
+					$dadoscliente['valormercadoria'] = $this->input->post('valormercadoria');
+					$dadoscliente['valorvenda'] = $this->input->post('valorvenda');
+					$dadoscliente['qtdeestoque'] = $this->input->post('qtdeestoque');
+					$dadoscliente['descontopermitido'] = $this->input->post('descontopermitido');
+					$dadoscliente['alertaestoque'] = $this->input->post('alertaestoque');
+					$dadoscliente['qtdevendaminima'] = $this->input->post('qtdevendaminima');
+					$dadoscliente['qtdevalorminimo'] = $this->input->post('qtdevalorminimo');
+
+					$this->load->model('Produto_model');
+					$resultadocadastroproduto = $this->Produto_model->cadastraproduto($dadoscliente);
+
+					if ($resultadocadastroproduto) {
+						$dados['telaativa'] = 'produtos';
+						$dados['msg'] = 'Produto cadastrado com sucesso!!!';
+						$dados['tela'] = 'agenda';
+					} else {
+						$dados['telaativa'] = 'produtos';
+						$dados['msg'] = 'Ocorreu um erro ao cadastrar o Produto! Atualize a p�gina e tente novamente';
+						$dados['tela'] = 'agenda';
+					}
+					$this->load->view('pages/home', $dados);
+				} else {
+					$dados['telaativa'] = 'produtos';
+					$dados['msg'] = 'Dados Imcompletos! Preencha os dados e tente novamente';
+					$dados['tela'] = 'agenda';
+					$this->load->view('pages/home', $dados);
+				}
+			} else {
+				$dados['telaativa'] = 'agenda';
+				$dados['tela'] = 'agenda';
+				$this->load->view('pages/home', $dados);
+			}
+		} else {
+			$dados['telaativa'] = 'agenda';
+			$dados['tela'] = 'agenda';
+			$this->load->view('pages/home', $dados);
+		}
+	}
+
 
 	/*
      * Usuário
