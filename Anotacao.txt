@@ -1,0 +1,18 @@
+Lista de Fusos Horários Suportados ¶
+https://www.php.net/manual/pt_BR/timezones.php
+
+AdminLTE 2.3.5 https://github.com/ColorlibHQ/AdminLTE/releases/tag/v2.3.5
+AdminLTE 2.3.3 https://github.com/ColorlibHQ/AdminLTE/releases/tag/v2.3.3
+https://code.jquery.com/jquery-2.2.3.js jquery 2.2.3
+
+
+
+
+CodeIgniter Framework
+CodeIgniter versão 3 - https://github.com/bcit-ci/CodeIgnite...
+
+AdminLTE BootStrap Template
+AdminLTE versao 2.3.5 - https://almsaeedstudio.com/download/A...
+
+Código de barras
+https://github.com/jahangiralammahi/codeigniter_barcode_master/tree/master/application
