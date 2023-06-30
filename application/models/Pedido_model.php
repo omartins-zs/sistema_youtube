@@ -18,4 +18,14 @@ class Pedido_model extends CI_Model
 			return false;
 		}
 	}
+
+	function cadastraitens($dados = NULL)
+	{
+		if ($dados !== NULL) {
+			$this->db->insert('pedidoitens', $dados);
+			return $this->db->insert_id();
+		} else {
+			return false;
+		}
+	}
 }
