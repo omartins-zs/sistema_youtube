@@ -4,7 +4,7 @@
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
 			<li>Usuarios</li>
-			<li class="active">Consulta de Usuario</li>
+			<li class="active">Consulta</li>
 		</ol>
 	</section>
 
@@ -13,7 +13,7 @@
 			<div class="col-xs-12 col-sm-12 col-lg-12">
 				<div class="box box-warning">
 					<div class="box-header with-border">
-						<h3 class="box-title">Informe os dados do Usuario</h3>
+						<h3 class="box-title">Informe os dados</h3>
 					</div>
 					<?php
 					if (isset($msg)) {
