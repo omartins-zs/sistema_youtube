@@ -166,7 +166,7 @@ class Home extends CI_Controller
 
 	function atualizausuario()
 	{
-		// if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+		// if ($this->session->userdata('logged_in')) { // VALIDA USUÁRIO LOGADO
 		$this->load->model('Perfil_model');
 		$resultadoPerfil = $this->Perfil_model->buscaPerfil();
 		$dados['resultadoPerfil'] = $resultadoPerfil;
@@ -212,7 +212,7 @@ class Home extends CI_Controller
 
 	function cadastracliente()
 	{
-		if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+		if ($this->session->userdata('logged_in')) { // VALIDA USUÁRIO LOGADO
 			$this->load->model('Perfil_model');
 			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
 			$dados['resultadoPerfil'] = $resultadoPerfil;
@@ -308,7 +308,7 @@ class Home extends CI_Controller
 
 	function listacliente()
 	{
-		if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+		if ($this->session->userdata('logged_in')) { // VALIDA USUÁRIO LOGADO
 			$this->load->model('Perfil_model');
 			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
 			$dados['resultadoPerfil'] = $resultadoPerfil;
@@ -329,7 +329,7 @@ class Home extends CI_Controller
 
 	function alteracliente()
 	{
-		if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+		if ($this->session->userdata('logged_in')) { // VALIDA USUÁRIO LOGADO
 			$this->load->model('Perfil_model');
 			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
 			$dados['resultadoPerfil'] = $resultadoPerfil;
@@ -399,7 +399,7 @@ class Home extends CI_Controller
 
 	function cadastraproduto()
 	{
-		if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+		if ($this->session->userdata('logged_in')) { // VALIDA USUÁRIO LOGADO
 			$this->load->model('Perfil_model');
 			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
 			$dados['resultadoPerfil'] = $resultadoPerfil;
@@ -455,7 +455,7 @@ class Home extends CI_Controller
 
 	function listaproduto()
 	{
-		if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+		if ($this->session->userdata('logged_in')) { // VALIDA USUÁRIO LOGADO
 			$this->load->model('Perfil_model');
 			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
 			$dados['resultadoPerfil'] = $resultadoPerfil;
@@ -474,7 +474,7 @@ class Home extends CI_Controller
 
 	function consultaproduto()
 	{
-		if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+		if ($this->session->userdata('logged_in')) { // VALIDA USUÁRIO LOGADO
 			$this->load->model('Perfil_model');
 			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
 			$dados['resultadoPerfil'] = $resultadoPerfil;
@@ -505,7 +505,7 @@ class Home extends CI_Controller
 
 	function alteraproduto()
 	{
-		if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+		if ($this->session->userdata('logged_in')) { // VALIDA USUÁRIO LOGADO
 			$this->load->model('Perfil_model');
 			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
 			$dados['resultadoPerfil'] = $resultadoPerfil;
@@ -666,10 +666,26 @@ class Home extends CI_Controller
 		}
 	}
 
+	function emissaopedido()
+	{
+		if ($this->session->userdata('logged_in')) { // VALIDA USUÁRIO LOGADO
+			$this->load->model('Perfil_model');
+			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
+			$dados['resultadoPerfil'] = $resultadoPerfil;
+
+			if ($this->input->post()) {
+			} else {
+				$dados['telaativa'] = 'pedido';
+				$dados['tela'] = 'produtos/lista_produto';
+				$this->load->view('pages/home', $dados);
+			}
+		}
+	}
+
 
 	function consultarpedido()
 	{
-		if ($this->session->userdata('logged_in')) { // VALIDA USU�RIO LOGADO
+		if ($this->session->userdata('logged_in')) { // VALIDA USUÁRIO LOGADO
 			$this->load->model('Perfil_model');
 			$resultadoPerfil = $this->Perfil_model->buscaPerfil();
 			$dados['resultadoPerfil'] = $resultadoPerfil;
