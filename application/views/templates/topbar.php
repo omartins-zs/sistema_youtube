@@ -2,7 +2,7 @@
 $session_youtube = $this->session->userdata('logged_in');
 $nomeUsuario = $session_youtube['nomeUsuario'];
 
-$emailUsario = $session_youtube['emailUsario'];
+$emailUsario = $session_youtube['emailUsuario'];
 $datacadastro = $session_youtube['datacadastro'];
 ?>
 <header class="main-header">
@@ -259,7 +259,7 @@ $datacadastro = $session_youtube['datacadastro'];
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="#" class="btn btn-default btn-flat">Profile</a>
+								<a href="profile" class="btn btn-default btn-flat">Profile</a>
 							</div>
 							<div class="pull-right">
 								<a href="logout" class="btn btn-default btn-flat">Sair do Sistema</a>
@@ -271,7 +271,6 @@ $datacadastro = $session_youtube['datacadastro'];
 				<li>
 					<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
 				</li>
-
 			</ul>
 		</div>
 
