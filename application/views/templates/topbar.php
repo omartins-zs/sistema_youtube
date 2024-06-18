@@ -42,7 +42,7 @@ $datacadastro = $session_youtube['datacadastro'];
 									<!-- start message -->
 									<a href="#">
 										<div class="pull-left">
-											<img src="<?= base_url(); ?>assets/img/01avatar.jpg" class="img-circle" alt="User Image">
+											<img src="<?= base_url(); ?>assets/img/01avatar.png" class="img-circle" alt="User Image">
 										</div>
 										<h4>
 											Support Team
