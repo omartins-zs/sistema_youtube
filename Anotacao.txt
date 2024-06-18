@@ -18,3 +18,8 @@ AdminLTE versao 2.3.5 - https://almsaeedstudio.com/download/A...
 
 Código de barras
 https://github.com/jahangiralammahi/codeigniter_barcode_master/tree/master/application
+
+
+
+Habilitar/descomentar extension=gd no php.ini
+
